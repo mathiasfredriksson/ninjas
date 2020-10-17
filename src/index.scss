@@ -14,3 +14,46 @@ body {
 	height: 100%;
 	overflow: hidden;
 }
+
+.colleagues-query {
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+.colleagues-container {
+	flex: 1;
+	overflow: scroll;
+}
+
+.colleagues-list {
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 260px);
+	grid-gap: 30px;
+	list-style: none;
+}
+
+.colleague {
+	display: flex;
+	flex-direction: column;
+}
+
+.colleague-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.colleague-filter {
+
+	form {
+		display: flex;
+		flex-direction: row;
+
+		label {
+			padding: 10px;
+		}
+	}
+}

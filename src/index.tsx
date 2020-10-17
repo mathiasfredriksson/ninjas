@@ -4,6 +4,7 @@ import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { environment } from './environment'
 import './index.scss'
+import Colleagues from './component/colleaguesQuery'
 
 (async () => {
 
@@ -12,7 +13,7 @@ import './index.scss'
 	});
 
 	render(<ApolloProvider client={ client }>
-		<div />
+		<Colleagues />
 	</ApolloProvider>, document.getElementById('root'))
 
 })();
