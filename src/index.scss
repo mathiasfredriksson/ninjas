@@ -13,6 +13,7 @@ body {
 #root {
 	height: 100%;
 	overflow: hidden;
+	background-color: #EEE;
 }
 
 .colleagues-query {
@@ -31,19 +32,34 @@ body {
 	margin: 0;
 	padding: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fit, 260px);
+	grid-template-columns: repeat(auto-fit, 200px);
 	grid-gap: 30px;
 	list-style: none;
 }
 
 .colleague {
+	box-shadow: 0px 0px 5px 5px #DDD;
+	padding: 10px;
+	margin: 10px;
+	background-color: #FFF;
+}
+
+.colleague-content {
 	display: flex;
 	flex-direction: column;
+	border: 10px;
+
+	img {
+		width: 160px;
+		height: 180px;
+		object-fit: cover;
+	}
 }
 
 .colleague-info {
 	display: flex;
 	flex-direction: column;
+	padding: 10px;
 }
 
 .colleague-filter {

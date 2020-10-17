@@ -124,7 +124,9 @@ const ColleaguesQueryComponent = () => {
 			orderByField={ orderByField }
 			setOrderByField={ setOrderByField }
 			setSearchTerm={ setSearchTerm } />
-		<Query<ColleagueData, ColleaguesVars> query={ colleaguesQuery } variables={ variables }>
+		<Query<ColleagueData, ColleaguesVars>
+			query={ colleaguesQuery }
+			variables={ variables }>
 			{({ data, fetchMore }) => {
 				return <ColleaguesList
 					isLoadingMore={ isLoadingMore }

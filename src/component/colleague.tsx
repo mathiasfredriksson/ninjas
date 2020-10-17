@@ -8,12 +8,14 @@ interface Props {
 const ColleagueComponent = (props:Props) => {
 
 	return <li className="colleague">
-		<div>
-			<img src={ props.colleague.imagePortraitUrl } />
-		</div>
-		<div className='colleague-info'>
-			<span>{ props.colleague.name }</span>
-			<span>Office: { props.colleague.office }</span>
+		<div className="colleague-content">
+			<div>
+				<img src={ props.colleague.imagePortraitUrl } />
+			</div>
+			<div className='colleague-info'>
+				<span>{ props.colleague.name }</span>
+				<span>Office: { props.colleague.office }</span>
+			</div>
 		</div>
 	</li>
 };
