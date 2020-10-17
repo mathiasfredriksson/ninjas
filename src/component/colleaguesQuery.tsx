@@ -88,7 +88,7 @@ const ColleaguesQueryComponent = () => {
 
 	const [isLoadingMore, setIsLoadingMore] = useState(false);
 	const [orderByField, setOrderByField] = useState('name');
-	const [searchTerm, setSearchTerm] = useState('a');
+	const [searchTerm, setSearchTerm] = useState('');
 
 	if (searchTerm !== '') {
 
