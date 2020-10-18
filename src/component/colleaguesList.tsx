@@ -3,9 +3,10 @@ import { Colleague } from './colleaguesQuery'
 import ColleagueComponent from './colleague'
 
 interface ListProps {
-	colleagues:Colleague[] | undefined;
-	onLoadMore:any;
-	isLoadingMore:boolean;
+	colleagues: Colleague[] | undefined;
+	onLoadMore: any;
+	isLoadingMore: boolean;
+	useListStyle: boolean;
 }
 
 const ColleaguesList = (props:ListProps) => {
@@ -35,11 +36,16 @@ const ColleaguesList = (props:ListProps) => {
 		}
 	}, []);
 
+	const listStyle = props.useListStyle ? 'colleagues-list' : 'colleagues-cards';
+
 	return <div className='colleagues-container' onScroll={ e => handleScroll(e) }>
-		<ul className="colleagues-list">
+		<ul className={ listStyle }>
 			{
 				props.colleagues?.map((colleague) => (
-					<ColleagueComponent key={ colleague.id } colleague={ colleague } />
+					<ColleagueComponent
+						useListStyle={ props.useListStyle }
+						key={ colleague.id }
+						colleague={ colleague } />
 				))
 			}
 		</ul>

@@ -1,9 +1,11 @@
 import React from 'react'
 
 interface Props {
-	orderByField:String
-	setOrderByField:any,
-	setSearchTerm:any
+	orderByField: String
+	setOrderByField: any,
+	setSearchTerm: any,
+	setUseListStyle: any,
+	useListStyle: boolean
 }
 
 const Filter = (props:Props) => {
@@ -20,7 +22,7 @@ const Filter = (props:Props) => {
 						props.setOrderByField('name')
 					} }
 				/>
-				<span className='radio-label'>Name</span>
+				<span className='form-label'>Name</span>
 			</label>
 			<label>
 				<input
@@ -31,7 +33,18 @@ const Filter = (props:Props) => {
 						props.setOrderByField('office')
 					} }
 				/>
-				<span className='radio-label'>Office</span>
+				<span className='form-label'>Office</span>
+			</label>
+			<label>
+				<input
+					type="checkbox"
+					value="List"
+					checked={ props.useListStyle }
+					onChange={ () => {
+						props.setUseListStyle(!props.useListStyle)
+					} }
+				/>
+				<span className='form-label'>List style</span>
 			</label>
 			<label>
 				<input

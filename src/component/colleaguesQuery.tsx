@@ -89,6 +89,7 @@ const ColleaguesQueryComponent = () => {
 	const [isLoadingMore, setIsLoadingMore] = useState(false);
 	const [orderByField, setOrderByField] = useState('name');
 	const [searchTerm, setSearchTerm] = useState('');
+	const [useListStyle, setUseListStyle] = useState(false);
 
 	if (searchTerm !== '') {
 
@@ -100,10 +101,13 @@ const ColleaguesQueryComponent = () => {
 			<ColleaguesFilter
 				orderByField={ orderByField }
 				setOrderByField={ setOrderByField }
-				setSearchTerm={ setSearchTerm } />
+				setSearchTerm={ setSearchTerm }
+				setUseListStyle={ setUseListStyle }
+				useListStyle={ useListStyle }/>
 			<Query<SearchColleagueData, SearchColleaguesVars> query={ searchColleaguesQuery } variables={ searchVariables }>
 				{({ data }) => {
 					return <ColleaguesList
+						useListStyle={ useListStyle }
 						isLoadingMore={ isLoadingMore }
 						colleagues={ data?.searchColleagues }
 						onLoadMore={() => {}}
@@ -123,12 +127,15 @@ const ColleaguesQueryComponent = () => {
 		<ColleaguesFilter
 			orderByField={ orderByField }
 			setOrderByField={ setOrderByField }
-			setSearchTerm={ setSearchTerm } />
+			setSearchTerm={ setSearchTerm }
+			useListStyle={ useListStyle }
+			setUseListStyle={ setUseListStyle } />
 		<Query<ColleagueData, ColleaguesVars>
 			query={ colleaguesQuery }
 			variables={ variables }>
 			{({ data, fetchMore }) => {
 				return <ColleaguesList
+					useListStyle={ useListStyle }
 					isLoadingMore={ isLoadingMore }
 					colleagues={ data?.getColleagues }
 					onLoadMore={

@@ -5,21 +5,31 @@ import LinkedInLogoImage from './../images/iconfinder_Circled_Linkedin_svg_52791
 import TwitterLogoImage from './../images/iconfinder_Circled_Twitter_svg_5279123.png'
 
 interface Props {
-	colleague:Colleague
+	colleague: Colleague,
+	useListStyle: boolean
 }
 
 const ColleagueComponent = (props:Props) => {
 
 	const [isSelected, setIsSelected] = React.useState(false);
-	const className = isSelected ? "colleague selected" : "colleague";
 	const GithubLogo = props.colleague.gitHub ? <a href={ 'http://github.com/' + props.colleague.gitHub }><img src={ GithubLogoImage } className='logo'/></a> : '';
 	const LinkedInLogo = props.colleague.linkedIn ? <a href={ 'http://linkedin.com/' + props.colleague.linkedIn }><img src={ LinkedInLogoImage } className='logo'/></a> : '';
 	const TwitterLogo = props.colleague.twitter ? <a href={ 'http://twitter.com/' + props.colleague.twitter }><img src={ TwitterLogoImage } className='logo'/></a> : '';
+	const contentClassName = props.useListStyle ? 'colleague-content slim' : 'colleague-content';
+	let liClassName = 'colleague';
 
-	return <li className={ className }
+	if (props.useListStyle) {
+		liClassName += ' slim'
+	}
+
+	if (isSelected) {
+		liClassName += ' selected';
+	}
+
+	return <li className={ liClassName }
 		onMouseOver={ e => setIsSelected(true) }
 		onMouseOut={ e => setIsSelected(false) }>
-		<div className="colleague-content">
+		<div className={ contentClassName }>
 			<img src={ props.colleague.imagePortraitUrl } className='colleague-profile'/>
 			<div className='colleague-info'>
 				<div className='flex-1'>
