@@ -1,55 +1,56 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const DotenvPlugin = require('dotenv-webpack');
 
-module.exports = {
-	mode: 'development',
-	entry: ['./src/index'],
-	output: {
-		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.js',
-	},
-	resolve: {
-		modules: ['node_modules'],
-		alias: {
-			'react-dom': '@hot-loader/react-dom',
+module.exports = env => {
+
+	const dotenvPlugin = new DotenvPlugin({
+		path: env === 'development' ? './.env-dev' : './.env-prod'
+	})
+
+    return {
+		entry: './src/index.tsx',
+		output: {
+			path: path.resolve(__dirname, 'dist'),
+			filename: 'bundle.js',
+			chunkFilename: '[id].js',
+			publicPath: ''
 		},
-		extensions: ['.ts', '.tsx', '.js', '.jsx'],
-	},
-	module: {
-		rules: [
-			{
-				test: /\.(j|t)s(x)?$/,
-				exclude: /node_modules/,
-				use: {
+		resolve: {
+			extensions: [".ts", ".tsx", ".js", ".json", '.png']
+		},
+		module: {
+			rules: [
+				{
+					test: /\.js$/,
 					loader: 'babel-loader',
+					exclude: /node_modules/
+				},
+				{ test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+				{
+					test: /\.s[ac]ss$/i,
+					use: [
+						'style-loader',
+						'css-loader',
+						'sass-loader',
+					],
+				},
+				{
+					test: /\.(png|jpe?g|gif|jp2|webp)$/,
+					loader: 'file-loader',
 					options: {
-						cacheDirectory: true,
-						babelrc: false,
-						presets: [
-						[
-							'@babel/preset-env',
-							{ targets: { browsers: 'last 2 versions' } }, // or whatever your project requires
-						],
-						'@babel/preset-typescript',
-						'@babel/preset-react',
-						],
-							plugins: [
-							// plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
-							['@babel/plugin-proposal-decorators', { legacy: true }],
-							['@babel/plugin-proposal-class-properties', { loose: true }],
-							'react-hot-loader/babel',
-						],
-					},
+						name: 'images/[name].[ext]'
+					}
 				}
-			}
-		],
-	},
-	devtool: 'eval-source-map',
-	plugins: [
-		new ForkTsCheckerWebpackPlugin(),
-		new webpack.NamedModulesPlugin(),
-		new HtmlWebpackPlugin()
-	],
+			]
+		},
+		plugins: [
+			dotenvPlugin,
+			new HtmlWebpackPlugin({
+				template: __dirname + '/src/index.html',
+				filename: 'index.html',
+				inject: 'body'
+			})
+		]
+	}
 };
