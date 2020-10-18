@@ -12,6 +12,7 @@ const Filter = (props:Props) => {
 		<form>
 			<label>
 				<input
+					className='radio'
 					type="radio"
 					value="Name"
 					checked={ props.orderByField === 'name' }
@@ -19,7 +20,7 @@ const Filter = (props:Props) => {
 						props.setOrderByField('name')
 					} }
 				/>
-				Name
+				<span className='radio-label'>Name</span>
 			</label>
 			<label>
 				<input
@@ -30,13 +31,18 @@ const Filter = (props:Props) => {
 						props.setOrderByField('office')
 					} }
 				/>
-				Office
+				<span className='radio-label'>Office</span>
 			</label>
 			<label>
-				Search:
-				<input type="text" name="name" onChange={ e => {
-					props.setSearchTerm(e.target.value)
-				} } />
+				<input
+					className='search'
+					placeholder='Search'
+					type="text"
+					name="name"
+					onChange={ e => {
+						props.setSearchTerm(e.target.value)
+					} }
+				/>
 			</label>
 		</form>
 	</div>

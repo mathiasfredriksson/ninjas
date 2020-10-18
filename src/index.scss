@@ -1,13 +1,13 @@
 html {
 	height: 100%;
 	overflow: hidden;
+	font-family: 'Roboto', sans-serif;
 }
 
 body {
 	height: 100%;
 	overflow: hidden;
 	margin: 0;
-	font-family: sans-serif;
 }
 
 #root {
@@ -26,11 +26,10 @@ body {
 .colleagues-container {
 	flex: 1;
 	overflow: scroll;
-	margin-left: 20px;
 }
 
 .colleagues-list {
-	margin: 0;
+	margin: 20px;
 	padding: 0;
 	display: grid;
 	grid-template-columns: repeat(auto-fit, 240px);
@@ -76,6 +75,7 @@ body {
 	background-color: #FFF;
 
 	form {
+		align-items: center;
 		display: flex;
 		flex-direction: row;
 
@@ -93,4 +93,17 @@ body {
 
 .flex-1 {
 	flex: 1;
+}
+
+.radio-label {
+	margin-left: 5px;
+}
+
+.search {
+	border-radius: 10px;
+	padding: 7px;
+	outline: none;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #CCC;
 }
