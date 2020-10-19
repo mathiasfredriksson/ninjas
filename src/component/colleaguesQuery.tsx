@@ -118,7 +118,7 @@ const ColleaguesQueryComponent = () => {
 	}
 
 	const variables:ColleaguesVars = {
-		take: 20,
+		take: 30,
 		skip: 0,
 		orderByField
 	}
@@ -145,7 +145,7 @@ const ColleaguesQueryComponent = () => {
 
 							fetchMore({
 								variables: {
-									take: 20,
+									take: 30,
 									skip: data?.getColleagues.length,
 									orderByField
 								},
